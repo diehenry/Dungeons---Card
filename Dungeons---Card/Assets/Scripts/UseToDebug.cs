@@ -8,16 +8,16 @@ public class UseToDebug : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (Debug.isDebugBuild == true)
+        if (Debug.isDebugBuild == false)
         {
-            GetComponent<Image>().enabled = true;
+            gameObject.SetActive(false);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
 }
