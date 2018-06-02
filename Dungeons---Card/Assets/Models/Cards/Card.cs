@@ -28,9 +28,11 @@ namespace Assets.Models.Cards
         /// </summary>
         public abstract int Cost { get; }
         public abstract void Abilities(Character characters,Monster monster);
-    
         public abstract string Description();
 
     }
+
+	
+	
 }
 
