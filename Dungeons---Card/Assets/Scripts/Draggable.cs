@@ -27,13 +27,19 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         this.transform.SetParent(this.transform.parent.parent);
         this.transform.eulerAngles = new Vector3(0, 0, 0);
 
+        placeholderParent.GetComponent<DropZone>().isExit = true;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("OnDrag");
-        this.transform.position = eventData.position;
+        
+        if (placeholderParent.GetComponent<DropZone>().isExit == true)
+            ArrowManager.instance.OnDrag(eventData);
+
+        if (placeholderParent.GetComponent<DropZone>().isExit != true)
+            this.transform.position = eventData.position;
 
         if (placeholder.transform.parent != placeholderParent)
             placeholder.transform.SetParent(placeholderParent);
@@ -61,10 +67,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnEndDrag(PointerEventData eventData)
     {
         //Debug.Log("OnEndDrag");
+        ArrowManager.instance.OnEndDrag(eventData);
         this.transform.SetParent(parentToReturnTo);
         this.transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
         Destroy(placeholder);
+        placeholderParent.GetComponent<DropZone>().isExit = false;
     }
 }

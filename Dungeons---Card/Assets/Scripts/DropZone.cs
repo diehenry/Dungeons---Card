@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public bool isExit;
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
@@ -13,6 +14,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             d.parentToReturnTo = this.transform;
         }
+        isExit = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -24,6 +26,9 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             d.placeholderParent = this.transform;
         }
+        CanvasGroup cg = eventData.pointerDrag.GetComponent<CanvasGroup>();
+        cg.blocksRaycasts = true;
+        isExit = false;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -35,5 +40,9 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         {
             d.placeholderParent = d.parentToReturnTo;
         }
+        isExit = true;
+        CanvasGroup cg = eventData.pointerDrag.GetComponent<CanvasGroup>();
+        cg.blocksRaycasts = false;
+        ArrowManager.instance.OnBeginDrag(eventData);
     }
 }
