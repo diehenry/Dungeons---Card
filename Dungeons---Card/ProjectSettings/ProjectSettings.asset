@@ -621,13 +621,13 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     Build: 0
-    Collab: 0
+    Collab: 1
     ErrorHub: 0
     Hub: 0
-    UNet: 0
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 01188579-96db-45fa-bc11-df6bb3957a32
+  cloudProjectId: 645e0fed-3e20-4b1c-a8e6-db3eed51e326
   projectName: Dungeons & Card
   organizationId: yikai9786
   cloudEnabled: 0

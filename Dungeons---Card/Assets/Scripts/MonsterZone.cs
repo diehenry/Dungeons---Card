@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Monster : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MonsterZone : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Transform focusRingTfm;
 
